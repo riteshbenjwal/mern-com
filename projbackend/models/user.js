@@ -48,9 +48,10 @@ const blogSchema = new Schema({
         type: Array,
         default: [],
     },
-});
+}, {timeStamps: true});
 
-userSchema.virtual("password")
+userSchema
+  .virtual("password")
   .set(function(password){
       this._password = password;
       this.salt = uuidv1();
