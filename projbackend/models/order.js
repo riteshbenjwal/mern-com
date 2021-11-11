@@ -21,6 +21,11 @@ const OrderSchema = new Schema(
     transaction_id: {},
     amount: { type: Number },
     address: String,
+    status: {
+      type: String,
+      default: "Not Delivered",
+      enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"],
+    },
     updated: Date,
     user: {
       type: ObjectId,
