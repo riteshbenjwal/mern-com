@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+#folder
+/tshirts
+/compressed-images
+
 # testing
 /coverage
 
