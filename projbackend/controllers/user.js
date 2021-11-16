@@ -112,8 +112,6 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
 
 
 
-
-
 //Get All user Test
 
 // exports.getAllUser =(req, res)=>{
