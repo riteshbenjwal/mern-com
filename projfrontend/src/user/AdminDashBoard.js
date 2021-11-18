@@ -18,6 +18,14 @@ const AdminDashBoard = () => {
               Create Categories
             </Link>
           </li>
+          
+          <li className="list-group-item">
+            <Link to="/admin/categories" className="nav-link text-success">
+              Manage Categories
+            </Link>
+          </li>
+          
+          
           <li className="list-group-item">
             <Link to="/admin/create/product" className="nav-link text-success">
               Create Products
@@ -39,24 +47,24 @@ const AdminDashBoard = () => {
   };
 
   const adminRightSide = () => {
-    return(
+    return (
       <div className="card mb-4">
         <h4 className="card-header">Admin Information</h4>
         <ul className="list-group">
           <li className="list-group-item">
-          <span className="badge badge-success mr-2">Name: </span>{name}
+            <span className="badge badge-success mr-2">Name: </span>
+            {name}
           </li>
           <li className="list-group-item">
-          <span className="badge badge-success mr-2">Email: </span>{email}
+            <span className="badge badge-success mr-2">Email: </span>
+            {email}
           </li>
           <li className="list-group-item">
-          <span className="badge badge-danger">Admin area</span>
+            <span className="badge badge-danger">Admin area</span>
           </li>
-
-          </ul>
+        </ul>
       </div>
-    
-    )
+    );
   };
 
   return (
@@ -65,7 +73,6 @@ const AdminDashBoard = () => {
       description="Manage all your products here"
       className="container bg-success p-4"
     >
-      
       <div className="row">
         <div className="col-3">{adminLiftSide()}</div>
         <div className="col-9">{adminRightSide()}</div>
