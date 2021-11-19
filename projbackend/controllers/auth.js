@@ -15,13 +15,11 @@ exports.signup = (req, res) => {
 
   const user = new User(req.body);
   user.save((err, user) => {
-
     if (err) {
-  
       return res.status(400).json({
         err: "NOT able to save user in DB",
       });
-}
+    }
 
     res.json({
       name: user.name,
@@ -76,44 +74,40 @@ exports.signin = (req, res) => {
 //Sign out current user
 
 exports.signout = (req, res) => {
-
-res.clearCookie("token");
+  res.clearCookie("token");
 
   res.json({
     message: "User signout successfully",
   });
 };
 
-
 //Protected Routes
 
 exports.isSignedIn = expressJwt({
   secret: process.env.SECRET,
-  userProperty: 'auth',
-})
-
-
+  userProperty: "auth",
+  algorithms: ["HS256"],
+});
 
 //Custom Middlewares
 
-exports.isAuthenticated = (req, res, next) =>{
-
+exports.isAuthenticated = (req, res, next) => {
   let checker = req.profile && req.auth && req.profile._id == req.auth._id;
 
-  if(!checker){
+  if (!checker) {
     return res.status(403).json({
-      error: "ACCESS DENIED"
+      error: "ACCESS DENIED",
     });
   }
 
   next();
-}
+};
 
-exports.isAdmin = (req, res, next) =>{
-if(req.profile.role === 0){
-  return res.status(403).json({
-    error: "You are not ADMIN, ACCESS DENIED"
-  });
-}
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.role === 0) {
+    return res.status(403).json({
+      error: "You are not ADMIN, ACCESS DENIED",
+    });
+  }
   next();
-}
+};
